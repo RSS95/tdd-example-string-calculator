@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'in.calculator'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
