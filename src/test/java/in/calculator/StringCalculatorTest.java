@@ -80,4 +80,19 @@ class StringCalculatorTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+  @Test
+  @DisplayName("Test 6 - unknown multiple inputs")
+  void testAdd6() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "0,1,2,3,4,5,6,7,8,9";
+    int expected = 45;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 6 - unknown multiple inputs ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
 }
