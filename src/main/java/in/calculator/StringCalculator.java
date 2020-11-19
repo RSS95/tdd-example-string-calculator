@@ -14,10 +14,12 @@ public class StringCalculator {
 
   public int add(String numberList) {
     int sum = 0;
+    List<String> negative = new ArrayList<>();
     try {
       if ((numberList == null) || (numberList.length() == 0)) {
         throw new Exception();
       }
+
       List<Character> delimiterList = new ArrayList<>();
       delimiterList.add(',');
       delimiterList.add('\n');
@@ -31,7 +33,11 @@ public class StringCalculator {
       for (int i = 0; i < numberList.length(); i++) {
         if (delimiterList.contains(numberList.charAt(i))) {
           if (lastDigit.length() > 0) {
-            sum = sum + Integer.parseInt(lastDigit.toString());
+            int num = Integer.parseInt(lastDigit.toString());
+            if (num < 0) {
+              negative.add(String.valueOf(num));
+            }
+            sum = sum + num;
             lastDigit = new StringBuilder();
             continue;
           } else {
@@ -40,9 +46,21 @@ public class StringCalculator {
         }
         lastDigit.append(numberList.charAt(i));
       }
+
       if (lastDigit.length() > 0) {
-        sum = sum + Integer.parseInt(lastDigit.toString());
+        int num = Integer.parseInt(lastDigit.toString());
+        if (num < 0) {
+          negative.add(String.valueOf(num));
+        }
+        sum = sum + num;
       }
+
+      if (!negative.isEmpty()) {
+        throw new RuntimeException();
+      }
+    } catch (RuntimeException e) {
+      System.out.println("negatives not allowed :: " + negative.toString());
+      sum = Integer.parseInt(negative.get(negative.size() - 1));
     } catch (Exception e) {
       sum = 0;
     }

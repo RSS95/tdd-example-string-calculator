@@ -140,4 +140,19 @@ class StringCalculatorTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+  @Test
+  @DisplayName("Test 10 - negatives not allowed")
+  void testAdd10() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "1,-2,-3";
+    int expected = -3;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 10 - negatives not allowed ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
 }
