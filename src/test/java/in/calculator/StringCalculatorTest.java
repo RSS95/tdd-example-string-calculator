@@ -155,4 +155,19 @@ class StringCalculatorTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+  @Test
+  @DisplayName("Test 11 - Numbers bigger than 1000 should be ignored")
+  void testAdd11() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "1,2,3,1001";
+    int expected = 6;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 11 - Numbers bigger than 1000 should be ignored ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
 }

@@ -12,3 +12,5 @@ step 3 :: Allow the Add method to handle new lines between numbers (instead of c
 step 4 :: Support different delimiters
 
 step 5 :: negatives not allowed
+
+step 6 :: Numbers bigger than 1000 should be ignored

@@ -37,6 +37,9 @@ public class StringCalculator {
             if (num < 0) {
               negative.add(String.valueOf(num));
             }
+            if (num > 1000) {
+              continue;
+            }
             sum = sum + num;
             lastDigit = new StringBuilder();
             continue;
@@ -52,7 +55,9 @@ public class StringCalculator {
         if (num < 0) {
           negative.add(String.valueOf(num));
         }
-        sum = sum + num;
+        if (num < 1000) {
+          sum = sum + num;
+        }
       }
 
       if (!negative.isEmpty()) {
