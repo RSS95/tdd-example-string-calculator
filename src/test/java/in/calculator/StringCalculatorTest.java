@@ -95,4 +95,34 @@ class StringCalculatorTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+  @Test
+  @DisplayName("Test 7 - positive case for new line instead of ',' as delimiter")
+  void testAdd7() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "1\n2,3";
+    int expected = 6;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 7 - positive case for new line instead of ',' as delimiter ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName("Test 8 - negative case for new line instead of ',' as delimiter")
+  void testAdd8() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "1,\n";
+    int expected = 0;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 8 - negative case for new line instead of ',' as delimiter ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
 }
