@@ -1,6 +1,8 @@
 # tdd-example-string-calculator
-tdd aproach to building simple string calculator for a job assesment
+tdd approach to building simple string calculator for a job assesment
 
-Assesment Application Name : TDD Kata
+Assessment Application Name : TDD Kata
 
-step 1 :: add two comma seperated numbers and return sum : complete
+step 1 :: add two comma-separated numbers and return sum : complete
+
+step 2 :: Allow the Add method to handle an unknown amount of numbers
