@@ -20,18 +20,32 @@ public class StringCalculator {
         throw new Exception();
       }
 
-      List<Character> delimiterList = new ArrayList<>();
-      delimiterList.add(',');
-      delimiterList.add('\n');
+      List<String> delimiterList = new ArrayList<>();
+      delimiterList.add(",");
+      delimiterList.add("\n");
 
       if (numberList.contains("//")) {
-        delimiterList.add(numberList.split("\n")[0].charAt(2));
-        numberList = numberList.split("\n")[1];
+        String dLine = numberList.split("\\n")[0];
+        dLine = dLine.replaceFirst("//", "");
+        StringBuilder dl = new StringBuilder();
+        for (int i = 0; i < dLine.length(); i++) {
+          if (dLine.charAt(i) == '[') {
+            continue;
+          }
+          if (dLine.charAt(i) == ']') {
+            delimiterList.add(dl.toString());
+            dl = new StringBuilder();
+            continue;
+          }
+          dl.append(dLine.charAt(i));
+        }
+        numberList = numberList.split("\\n")[1];
       }
 
       StringBuilder lastDigit = new StringBuilder();
       for (int i = 0; i < numberList.length(); i++) {
-        if (delimiterList.contains(numberList.charAt(i))) {
+        String delimiter = checkContains(delimiterList, numberList, i);
+        if (delimiter != null) {
           if (lastDigit.length() > 0) {
             int num = Integer.parseInt(lastDigit.toString());
             if (num < 0) {
@@ -42,6 +56,7 @@ public class StringCalculator {
             }
             sum = sum + num;
             lastDigit = new StringBuilder();
+            i = i + delimiter.length() - 1;
             continue;
           } else {
             throw new Exception();
@@ -63,6 +78,8 @@ public class StringCalculator {
       if (!negative.isEmpty()) {
         throw new RuntimeException();
       }
+    } catch (NumberFormatException e) {
+      sum = 0;
     } catch (RuntimeException e) {
       System.out.println("negatives not allowed :: " + negative.toString());
       sum = Integer.parseInt(negative.get(negative.size() - 1));
@@ -70,5 +87,15 @@ public class StringCalculator {
       sum = 0;
     }
     return sum;
+  }
+
+  private String checkContains(List<String> delimiterList, String numberList, int index) {
+    for (String delimiter : delimiterList) {
+      if (numberList.length() > index + delimiter.length()
+              && numberList.startsWith(delimiter, index)) {
+        return delimiter;
+      }
+    }
+    return null;
   }
 }

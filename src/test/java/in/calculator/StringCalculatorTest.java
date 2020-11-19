@@ -16,7 +16,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 1 - empty string input ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -31,7 +32,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 2 - input 1 number ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -46,7 +48,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 3 - input 1 number ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -61,7 +64,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 4 - input 2 number ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -76,7 +80,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 5 - null input ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -91,7 +96,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 6 - unknown multiple inputs ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -106,7 +112,7 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 7 - positive case for new line instead of ',' as delimiter ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println("Input : '1\\n2,3' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -121,7 +127,7 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 8 - negative case for new line instead of ',' as delimiter ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println("Input : '1,\\n' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -130,13 +136,14 @@ class StringCalculatorTest {
   @DisplayName("Test 9 - to change a delimiter")
   void testAdd9() {
     StringCalculator stringCalculator = new StringCalculator();
-    String input = "//;\n1;2";
+    String input = "//[;]\n1;2";
     int expected = 3;
 
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 9 - to change a delimiter ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '//[;]\\n1;2' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -151,7 +158,8 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 10 - negatives not allowed ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
@@ -166,7 +174,58 @@ class StringCalculatorTest {
     int actual = stringCalculator.add(input);
 
     System.out.print("Test 11 - Numbers bigger than 1000 should be ignored ::: ");
-    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+    System.out.println(
+            "Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName("Test 12 - Delimiters can be of any length")
+  void testAdd12() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "//[***]\n1***2***3";
+    int expected = 6;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 12 - Delimiters can be of any length ::: ");
+    System.out.println(
+            "Input : '//[***]\\n1***2***3' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName("Test 13 - Allow multiple delimiters")
+  void testAdd13() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "//[*][%]\n1*2%3";
+    int expected = 6;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 13 - Allow multiple delimiters ::: ");
+    System.out.println(
+            "Input : '//[*][%]\\n1*2%3' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName(
+          "Test 14 - make sure you can also handle multiple delimiters with length longer than one char")
+  void testAdd14() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "//[**][%]\n1**2%3";
+    int expected = 6;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print(
+            "Test 14 - make sure you can also handle multiple delimiters with length longer than one char ::: ");
+    System.out.println(
+            "Input : '//[**][%]\\n1**2%3' :: Expected : " + expected + " :: Actual : " + actual);
 
     Assertions.assertEquals(expected, actual);
   }
