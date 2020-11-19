@@ -125,4 +125,19 @@ class StringCalculatorTest {
 
     Assertions.assertEquals(expected, actual);
   }
+
+  @Test
+  @DisplayName("Test 9 - to change a delimiter")
+  void testAdd9() {
+    StringCalculator stringCalculator = new StringCalculator();
+    String input = "//;\n1;2";
+    int expected = 3;
+
+    int actual = stringCalculator.add(input);
+
+    System.out.print("Test 9 - to change a delimiter ::: ");
+    System.out.println("Input : '" + input + "' :: Expected : " + expected + " :: Actual : " + actual);
+
+    Assertions.assertEquals(expected, actual);
+  }
 }

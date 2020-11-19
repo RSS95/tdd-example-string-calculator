@@ -1,5 +1,8 @@
 package in.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
   public static void main(String[] args) {
@@ -15,9 +18,18 @@ public class StringCalculator {
       if ((numberList == null) || (numberList.length() == 0)) {
         throw new Exception();
       }
+      List<Character> delimiterList = new ArrayList<>();
+      delimiterList.add(',');
+      delimiterList.add('\n');
+
+      if (numberList.contains("//")) {
+        delimiterList.add(numberList.split("\n")[0].charAt(2));
+        numberList = numberList.split("\n")[1];
+      }
+
       StringBuilder lastDigit = new StringBuilder();
       for (int i = 0; i < numberList.length(); i++) {
-        if (numberList.charAt(i) == ',' || numberList.charAt(i) == '\n') {
+        if (delimiterList.contains(numberList.charAt(i))) {
           if (lastDigit.length() > 0) {
             sum = sum + Integer.parseInt(lastDigit.toString());
             lastDigit = new StringBuilder();
